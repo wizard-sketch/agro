@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>AGRO ANYTHING</title>
+	<link rel="stylesheet" type="text/css" href="css/agro.css">
+</head>
+<body>
+	<header>
+		<div class="main">
+			<div class="logo">
+				<img src="images\logo.png">
+			</div>
+			<ul>
+				<li><a href="signin.html">Signin</a></li>
+				<li><a href="signup.html">Signup</a></li>
+				<li><a href="index.html">Back</a></li>
+       
+			</ul>
+	     </div>
+	 </header>
+		<div class="title">
+			<div class="login-page">
+  <div class="form">
+    <form class="login-form" method="POST" action="php_signup.php">
+      <input type="text" placeholder="Name" name="name" id="name" required >
+      <input type="text" placeholder="Username" name="uname" id="uname" required>
+      <input type="password" placeholder="Password" name="pass" id="pass" required>
+      <input type="password" placeholder="Confirm Password" name="confpass" id="confpass" required>
+	  <input type="email" placeholder="Email" name="email" id="email" required>				
+	  <input type="text" placeholder="Phone Number"name="phno" id="phno" required>
+      <input type="text" placeholder="Agri Card Number" name="card" id="card" required>
+      <input type="text" placeholder="Address" name="address" id="address" required>
+      <button onclick="return validate();">create</button>
+      <p class="message">Already registered? <a href="signin.html">Sign In</a></p>
+    </form>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+	function validate(){
+		var name=document.getElementById('name').value;
+		var username=document.getElementById('uname').value;
+		var password=document.getElementById('pass').value;
+		var phno=document.getElementById('phno').value;
+		var bankcard=document.getElementById('card').value;
+		var patt1=/[a-zA-Z]/;
+		if(patt1.test(name)==false || name.length>30){
+			alert("Enter Valid Name ");
+			//window.location="signup.html";
+			return false;
+		}
+		else{
+			var patt4=/[a-zA-Z0-9]/;
+            if(patt4.test(username)==false || username.length>20){
+        	alert("Enter a valid username ");
+        	//window.location="signup.html";
+        	return false;
+            }
+            else{
+			if(password!=document.getElementById('confpass').value){
+				alert("Password and Confirm Password should be same");
+				//window.location="signup.html";
+				return false;
+			}
+			else{
+			var patt2=/[A-Z]+[a-z]+[0-9]+/g;
+        	if(password.length<9 || patt2.test(password)==false || password.length>20){
+                 alert("Password should contain more than 8 characters and less than 20 with atleast one Uppercase,LowerCase,Digit");
+                 //window.location="signup.html";
+                 return false;
+        	}
+        	else{
+        		if(phno.length!=10){
+        			alert("Phone Number is not valid");
+        			//window.location="signup.html";
+        			return false;
+        		}
+        		else{
+        			var patt3=/[1-9]{1}[0-9]{3}[-][0-9]{4}[-][0-9]{4}/;
+        			if(patt3.test(bankcard)==false){
+        				alert("Agri Card Details are not valid");
+        				//window.location="signup.html";
+        				return false;
+        			}
+        		}
+        	}
+ 
+			}
+		}
+	}
+}
+
+</script>
+	</body>
+</html>
